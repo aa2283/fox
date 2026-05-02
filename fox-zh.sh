@@ -157,7 +157,7 @@ else
   --shm-size=512m \
   --memory=800m \
   --memory-swap=1g \
-  --cpu-shares=512 \  # 替换--cpus=0.5，用这个
+  --cpu-shares=512 \
   -p 5900:5900 \
   -e TZ="$TZ" \
   -e VNC_PASSWORD="$VNC_PASSWORD_INPUT" \
@@ -169,7 +169,7 @@ else
   -e DARK_MODE=1 \
   -v "$CONFIG_VOLUME_PATH":/config:rw \
   --restart unless-stopped \
-  jlesage/firefox
+  jlesage/firefox:latest
     if [ $? -ne 0 ]; then
         echo "错误: Docker 容器启动失败。请检查 Docker 服务或端口占用情况。"
         exit 1
