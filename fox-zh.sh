@@ -153,23 +153,15 @@ else
     echo "容器 '$CONTAINER_NAME' 不存在，正在创建并启动..."
     mkdir -p "$CONFIG_VOLUME_PATH" # 确保宿主机配置目录存在
     docker run -d \
-  --name "$CONTAINER_NAME" \
-  --shm-size=512m \
-  --memory=800m \
-  --memory-swap=1g \
-  --cpu-shares=512 \
-  -p 5900:5900 \
-  -e TZ="$TZ" \
-  -e VNC_PASSWORD="$VNC_PASSWORD_INPUT" \
-  -e DISPLAY_WIDTH="1024" \
-  -e DISPLAY_HEIGHT="768" \
-  -e ENABLE_AUDIO=0 \
-  -e ENABLE_WEB_AUDIO=0 \
-  -e ENABLE_WEB_UI=0 \
-  -e DARK_MODE=1 \
-  -v "$CONFIG_VOLUME_PATH":/config:rw \
-  --restart unless-stopped \
-  jlesage/firefox:latest
+      --name "$CONTAINER_NAME" \
+      --network host \
+      -e TZ="$TZ" \
+      -e VNC_PASSWORD="$VNC_PASSWORD_INPUT" \
+      -e DISPLAY_WIDTH="$DISPLAY_WIDTH" \
+      -e DISPLAY_HEIGHT="$DISPLAY_HEIGHT" \
+      -e WEB_LISTENING_PORT="$WEB_LISTENING_PORT" \
+      -v "$CONFIG_VOLUME_PATH":/config:rw \
+      jlesage/firefox:v23.02.3
     if [ $? -ne 0 ]; then
         echo "错误: Docker 容器启动失败。请检查 Docker 服务或端口占用情况。"
         exit 1
