@@ -161,7 +161,7 @@ else
       -e DISPLAY_HEIGHT="$DISPLAY_HEIGHT" \
       -e WEB_LISTENING_PORT="$WEB_LISTENING_PORT" \
       -v "$CONFIG_VOLUME_PATH":/config:rw \
-      jlesage/firefox:v24.11.1
+      jlesage/firefox:v25.02.1
     if [ $? -ne 0 ]; then
         echo "错误: Docker 容器启动失败。请检查 Docker 服务或端口占用情况。"
         exit 1
