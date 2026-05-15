@@ -166,7 +166,7 @@ else
       -e DISPLAY_HEIGHT="$DISPLAY_HEIGHT" \
       -e CLEAN_TMP_FILES=1 \
       -v "$CONFIG_VOLUME_PATH":/config:rw \
-      jlesage/firefox:v24.08.1
+      jlesage/firefox:v25.02.2
     # ========================================================
     
     if [ $? -ne 0 ]; then
